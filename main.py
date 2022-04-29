@@ -51,4 +51,4 @@ api.add_resource(ItemList, "/items")
 if __name__ == "__main__":
     db.init_app(app)
     ma.init_app(app)
-    app.run(host='0.0.0.0', port=8080, debug=True)
+    app.run(host='0.0.0.0', port=3000)
