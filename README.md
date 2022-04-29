@@ -13,6 +13,9 @@ Build an inventory tracking application for a logistics company. This is an open
 
 In essence, we can perform CRUD operations on the items in the inventory, as well as the ability to create warehouses/locations and assign inventory & items to the warehouse (Extra feature #2 from the list)
 
+
+Since we are only interested in evaluating the quality and functionality of the backend code, the application was designed as an APIl with no front-end interface. To test the application, one would need to execute cURL commands against the endpoints, or use the Postman collection provided in the `tests/` folder. 
+
 ## Tech Stack:
 * Python
   * Flask App
@@ -27,7 +30,7 @@ In essence, we can perform CRUD operations on the items in the inventory, as wel
 ## How to run the API?
 Please click on the Replit hosted link provided above. Once you navigate to the Replit hosted application, please click on the green "run" button on the top right corner. 
 
-Once you run it, you'll see a simple landing page containing basic instructions. The application will run on port `8080` and the base URL to interact with the API is 
+Once you run it, you'll see a simple landing page containing basic instructions. The application will run on port `3000` and the base URL to interact with the API is 
 
 ``` https://shreyassrivatsashopifyfall2022challenge.shreyassrivatsa.repl.co/ ```
 
