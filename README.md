@@ -27,9 +27,9 @@ Since we are only interested in evaluating the quality and functionality of the 
 * Github hosted code link - https://github.com/Shreyas15srivatsa/ShreyasSrivatsaShopifyFall2022Challenge
 
 ## How to run the API?
-Please click on the Replit hosted link provided above. Once you navigate to the Replit hosted application, please click on the green "run" button on the top right corner. 
+Please click on the Replit hosted link provided above. Once you navigate to the Replit hosted application, please click on the green "run" button on the top right corner. (this step is optional as the application should already be running on the URL provided below)
 
-Once you run it, you'll see a simple landing page containing basic instructions. The application will run on port `8080` and the base URL to interact with the API is 
+Once you run it, you'll see a simple landing page containing basic instructions. The application will run on port `3000` and the base URL to interact with the API is 
 
 ``` https://shreyassrivatsashopifyfall2022challenge.shreyassrivatsa.repl.co/ ```
 
