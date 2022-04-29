@@ -18,13 +18,17 @@ class Item(Resource):
         if item:
             return item_schema.dump(item), HTTPStatus.OK
 
-        return {"message": Items.ITEM_NOT_FOUND}, HTTPStatus.NOT_FOUND
+        return {
+          "message": Items.ITEM_NOT_FOUND.value
+        }, HTTPStatus.NOT_FOUND
 
     @classmethod
     def post(cls, name: str):
         # if inventory item already exist, throw 400
         if ItemModel.find_by_name(name):
-            return {"message": Items.NAME_ALREADY_EXISTS.format(name)}, HTTPStatus.BAD_REQUEST
+            return {
+              "message": Items.NAME_ALREADY_EXISTS.value.format(name)
+            }, HTTPStatus.BAD_REQUEST
 
         item_json = request.get_json()
         item_json["name"] = name
@@ -34,7 +38,9 @@ class Item(Resource):
         try:
             item.save_to_db()
         except:
-            return {"message": Items.ERROR_INSERTING}, HTTPStatus.INTERNAL_SERVER_ERROR
+            return {
+              "message": Items.ERROR_INSERTING.value
+            }, HTTPStatus.INTERNAL_SERVER_ERROR
 
         return item_schema.dump(item), HTTPStatus.CREATED
 
@@ -44,9 +50,13 @@ class Item(Resource):
         item = ItemModel.find_by_name(name)
         if item:
             item.delete_from_db()
-            return {"message": Items.ITEM_DELETED}, HTTPStatus.OK
+            return {
+              "message": Items.ITEM_DELETED.value
+            }, HTTPStatus.OK
 
-        return {"message": Items.ITEM_NOT_FOUND}, HTTPStatus.NOT_FOUND
+        return {
+          "message": Items.ITEM_NOT_FOUND.value
+        }, HTTPStatus.NOT_FOUND
 
     @classmethod
     def put(cls, name: str):
@@ -71,4 +81,6 @@ class Item(Resource):
 class ItemList(Resource):
     @classmethod
     def get(cls):
-        return {"items": item_list_schema.dump(ItemModel.find_all())}, HTTPStatus.OK
+        return {
+          "items": item_list_schema.dump(ItemModel.find_all())
+        }, HTTPStatus.OK
