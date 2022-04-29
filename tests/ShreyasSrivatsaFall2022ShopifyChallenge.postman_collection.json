@@ -1,0 +1,995 @@
+{
+	"info": {
+		"_postman_id": "68032560-2195-425c-a38a-d0b9419900f1",
+		"name": "ShreyasSrivatsaFall2022ShopifyChallenge",
+		"description": "This collection consists of some of the Postman requests one can use to test the backend API. ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Warehouses",
+			"item": [
+				{
+					"name": "Add Warehouse",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a8e0f144-127a-4720-822c-8ee6137023e5",
+								"exec": [
+									"pm.test(\"Status code is 201\", () => {",
+									"  pm.expect(pm.response.code).to.eql(201);",
+									"});",
+									"",
+									"pm.test(\"The response message is valid\", () => {",
+									"    //parse the response JSON and test three properties",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson).to.be.an(\"object\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://shreyassrivatsashopifyfall2022challenge.shreyassrivatsa.repl.co/warehouse/warehouse_1",
+							"protocol": "https",
+							"host": [
+								"shreyassrivatsashopifyfall2022challenge",
+								"shreyassrivatsa",
+								"repl",
+								"co"
+							],
+							"path": [
+								"warehouse",
+								"warehouse_1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Warehouses",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a8e0f144-127a-4720-822c-8ee6137023e5",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});",
+									"",
+									"pm.test(\"The response message is valid\", () => {",
+									"    //parse the response JSON and test three properties",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.warehouses).to.be.an(\"array\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://shreyassrivatsashopifyfall2022challenge.shreyassrivatsa.repl.co/warehouses",
+							"protocol": "https",
+							"host": [
+								"shreyassrivatsashopifyfall2022challenge",
+								"shreyassrivatsa",
+								"repl",
+								"co"
+							],
+							"path": [
+								"warehouses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Warehouse by Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7669aef5-e267-4942-9376-e4c50e1c57e5",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});",
+									"",
+									"pm.test(\"The response message valid\", () => {",
+									"    //parse the response JSON and test three properties",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.name).to.eql('warehouse_1');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://shreyassrivatsashopifyfall2022challenge.shreyassrivatsa.repl.co/warehouse/warehouse_1",
+							"protocol": "https",
+							"host": [
+								"shreyassrivatsashopifyfall2022challenge",
+								"shreyassrivatsa",
+								"repl",
+								"co"
+							],
+							"path": [
+								"warehouse",
+								"warehouse_1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Warehouse",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a8e0f144-127a-4720-822c-8ee6137023e5",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});",
+									"",
+									"pm.test(\"The response message is valid\", () => {",
+									"    //parse the response JSON and test three properties",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.message).to.eql(\"Warehouse deleted.\")",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://shreyassrivatsashopifyfall2022challenge.shreyassrivatsa.repl.co/warehouse/warehouse_1",
+							"protocol": "https",
+							"host": [
+								"shreyassrivatsashopifyfall2022challenge",
+								"shreyassrivatsa",
+								"repl",
+								"co"
+							],
+							"path": [
+								"warehouse",
+								"warehouse_1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Warehouse that doesn't exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a8e0f144-127a-4720-822c-8ee6137023e5",
+								"exec": [
+									"pm.test(\"Status code is 404\", () => {",
+									"  pm.expect(pm.response.code).to.eql(404);",
+									"});",
+									"",
+									"pm.test(\"The response message is valid\", () => {",
+									"    //parse the response JSON and test three properties",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.message).to.eql(\"Warehouse not found. Please try again.\")",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://shreyassrivatsashopifyfall2022challenge.shreyassrivatsa.repl.co/warehouse/warehouse_1_dummy",
+							"protocol": "https",
+							"host": [
+								"shreyassrivatsashopifyfall2022challenge",
+								"shreyassrivatsa",
+								"repl",
+								"co"
+							],
+							"path": [
+								"warehouse",
+								"warehouse_1_dummy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Warehouse by Name That Does not exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ab67934e-8934-42db-9a15-6efca60abb96",
+								"exec": [
+									"pm.test(\"Status code is 404\", () => {",
+									"  pm.expect(pm.response.code).to.eql(404);",
+									"});",
+									"",
+									"pm.test(\"The response message is valid\", () => {",
+									"    //parse the response JSON and test three properties",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.message).to.eql('Warehouse not found. Please try again.');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://shreyassrivatsashopifyfall2022challenge.shreyassrivatsa.repl.co/warehouse/warehouse_1",
+							"protocol": "https",
+							"host": [
+								"shreyassrivatsashopifyfall2022challenge",
+								"shreyassrivatsa",
+								"repl",
+								"co"
+							],
+							"path": [
+								"warehouse",
+								"warehouse_1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Warehouse Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a8e0f144-127a-4720-822c-8ee6137023e5",
+								"exec": [
+									"pm.test(\"Status code is 201\", () => {",
+									"  pm.expect(pm.response.code).to.eql(201);",
+									"});",
+									"",
+									"pm.test(\"The response message is valid\", () => {",
+									"    //parse the response JSON and test three properties",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson).to.be.an(\"object\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://shreyassrivatsashopifyfall2022challenge.shreyassrivatsa.repl.co/warehouse/warehouse_1",
+							"protocol": "https",
+							"host": [
+								"shreyassrivatsashopifyfall2022challenge",
+								"shreyassrivatsa",
+								"repl",
+								"co"
+							],
+							"path": [
+								"warehouse",
+								"warehouse_1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Items",
+			"item": [
+				{
+					"name": "Add Item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a8e7da58-ffcb-4cb1-adc1-5960cc067c4c",
+								"exec": [
+									"pm.test(\"Status code is 201\", () => {",
+									"  pm.expect(pm.response.code).to.eql(201);",
+									"});",
+									"",
+									"pm.test(\"The response message is valid\", () => {",
+									"    //parse the response JSON and test three properties",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson).to.be.an(\"object\");",
+									"    pm.expect(responseJson.name).to.eql('desk');",
+									"    pm.expect(responseJson.price).to.eql(75.99);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"price\": 75.99,\n  \"description\": \"This is a foldable desk\",\n  \"warehouse_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://shreyassrivatsashopifyfall2022challenge.shreyassrivatsa.repl.co/item/desk",
+							"protocol": "https",
+							"host": [
+								"shreyassrivatsashopifyfall2022challenge",
+								"shreyassrivatsa",
+								"repl",
+								"co"
+							],
+							"path": [
+								"item",
+								"desk"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Item to a warehouse that doesn't exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a8e7da58-ffcb-4cb1-adc1-5960cc067c4c",
+								"exec": [
+									"pm.test(\"Status code is 400\", () => {",
+									"  pm.expect(pm.response.code).to.eql(400);",
+									"});",
+									"",
+									"pm.test(\"The response message is valid\", () => {",
+									"    //parse the response JSON and test three properties",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.message).to.eql(\"Item cannot be added to the provided warehouse. Please check if the warehouse is valid.\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"price\":75.99,\n  \"description\": \"This is a book rack\",\n  \"warehouse_id\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://shreyassrivatsashopifyfall2022challenge.shreyassrivatsa.repl.co/item/rack",
+							"protocol": "https",
+							"host": [
+								"shreyassrivatsashopifyfall2022challenge",
+								"shreyassrivatsa",
+								"repl",
+								"co"
+							],
+							"path": [
+								"item",
+								"rack"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Item that already Exists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2024a00b-baa5-4bc8-b559-369529b6bfb7",
+								"exec": [
+									"pm.test(\"Status code is 400\", () => {",
+									"  pm.expect(pm.response.code).to.eql(400);",
+									"});",
+									"",
+									"pm.test(\"The response message is valid\", () => {",
+									"    //parse the response JSON and test three properties",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.message).to.eql(\"An item with name 'desk' already exists.\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"price\":75.99,\n  \"description\": \"This is a foldable desk\",\n  \"warehouse_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://shreyassrivatsashopifyfall2022challenge.shreyassrivatsa.repl.co/item/desk",
+							"protocol": "https",
+							"host": [
+								"shreyassrivatsashopifyfall2022challenge",
+								"shreyassrivatsa",
+								"repl",
+								"co"
+							],
+							"path": [
+								"item",
+								"desk"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Item Price",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5a8fde16-58d7-4090-97fc-8ea6cc68e228",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});",
+									"",
+									"pm.test(\"The response message is valid\", () => {",
+									"    //parse the response JSON and test three properties",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson).to.be.an(\"object\");",
+									"    pm.expect(responseJson.name).to.eql('desk');",
+									"    pm.expect(responseJson.price).to.eql(55.99);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"price\": 55.99,\n  \"description\": \"This is a foldable desk\",\n  \"warehouse_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://shreyassrivatsashopifyfall2022challenge.shreyassrivatsa.repl.co/item/desk",
+							"protocol": "https",
+							"host": [
+								"shreyassrivatsashopifyfall2022challenge",
+								"shreyassrivatsa",
+								"repl",
+								"co"
+							],
+							"path": [
+								"item",
+								"desk"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Item Description",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5a8fde16-58d7-4090-97fc-8ea6cc68e228",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});",
+									"",
+									"pm.test(\"The response message is valid\", () => {",
+									"    //parse the response JSON and test three properties",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson).to.be.an(\"object\");",
+									"    pm.expect(responseJson.name).to.eql('desk');",
+									"    pm.expect(responseJson.description).to.eql(\"This is a foldable desk v2\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"price\": 75.99,\n  \"description\": \"This is a foldable desk v2\",\n  \"warehouse_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://shreyassrivatsashopifyfall2022challenge.shreyassrivatsa.repl.co/item/desk",
+							"protocol": "https",
+							"host": [
+								"shreyassrivatsashopifyfall2022challenge",
+								"shreyassrivatsa",
+								"repl",
+								"co"
+							],
+							"path": [
+								"item",
+								"desk"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Item to a warehouse that doesn't exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5a8fde16-58d7-4090-97fc-8ea6cc68e228",
+								"exec": [
+									"pm.test(\"Status code is 400\", () => {",
+									"  pm.expect(pm.response.code).to.eql(400);",
+									"});",
+									"",
+									"pm.test(\"The response message is valid\", () => {",
+									"    //parse the response JSON and test three properties",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.message).to.eql(\"Item cannot be added to the provided warehouse. Please check if the warehouse is valid.\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"price\": 55.99,\n  \"description\": \"This is a foldable desk\",\n  \"warehouse_id\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://shreyassrivatsashopifyfall2022challenge.shreyassrivatsa.repl.co/item/desk",
+							"protocol": "https",
+							"host": [
+								"shreyassrivatsashopifyfall2022challenge",
+								"shreyassrivatsa",
+								"repl",
+								"co"
+							],
+							"path": [
+								"item",
+								"desk"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Item that does not exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5a8fde16-58d7-4090-97fc-8ea6cc68e228",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});",
+									"",
+									"pm.test(\"The response message is valid\", () => {",
+									"    //parse the response JSON and test three properties",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson).to.be.an(\"object\");",
+									"    pm.expect(responseJson.name).to.eql('lamp');",
+									"    pm.expect(responseJson.price).to.eql(55.99);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"price\": 55.99,\n  \"description\": \"This is a foldable desk\",\n  \"warehouse_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://shreyassrivatsashopifyfall2022challenge.shreyassrivatsa.repl.co/item/lamp",
+							"protocol": "https",
+							"host": [
+								"shreyassrivatsashopifyfall2022challenge",
+								"shreyassrivatsa",
+								"repl",
+								"co"
+							],
+							"path": [
+								"item",
+								"lamp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Items",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "96f75866-bde6-41fd-9e82-dddd47c399fb",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});",
+									"",
+									"pm.test(\"The response message is valid\", () => {",
+									"    //parse the response JSON and test three properties",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.items).to.be.an(\"array\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://shreyassrivatsashopifyfall2022challenge.shreyassrivatsa.repl.co/items",
+							"protocol": "https",
+							"host": [
+								"shreyassrivatsashopifyfall2022challenge",
+								"shreyassrivatsa",
+								"repl",
+								"co"
+							],
+							"path": [
+								"items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Item by Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "22261dc2-c971-462a-848f-0e9ce625496e",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});",
+									"",
+									"pm.test(\"The response message valid\", () => {",
+									"    //parse the response JSON and test three properties",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.name).to.eql('lamp');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://shreyassrivatsashopifyfall2022challenge.shreyassrivatsa.repl.co/item/lamp",
+							"protocol": "https",
+							"host": [
+								"shreyassrivatsashopifyfall2022challenge",
+								"shreyassrivatsa",
+								"repl",
+								"co"
+							],
+							"path": [
+								"item",
+								"lamp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Warehouse with non-empty inventory",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a8e0f144-127a-4720-822c-8ee6137023e5",
+								"exec": [
+									"pm.test(\"Status code is 400\", () => {",
+									"  pm.expect(pm.response.code).to.eql(400);",
+									"});",
+									"",
+									"pm.test(\"The response message is valid\", () => {",
+									"    //parse the response JSON and test three properties",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.message).to.eql(\"Cannot delete this warehouse as the inventory is not empty. Please empty the inventory and try again.\")",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://shreyassrivatsashopifyfall2022challenge.shreyassrivatsa.repl.co/warehouse/warehouse_1",
+							"protocol": "https",
+							"host": [
+								"shreyassrivatsashopifyfall2022challenge",
+								"shreyassrivatsa",
+								"repl",
+								"co"
+							],
+							"path": [
+								"warehouse",
+								"warehouse_1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "786f9a63-417f-4fee-8e56-28c81b99d8e8",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});",
+									"",
+									"pm.test(\"The response message is valid\", () => {",
+									"    //parse the response JSON and test three properties",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.message).to.eql('Item deleted.');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://shreyassrivatsashopifyfall2022challenge.shreyassrivatsa.repl.co/item/desk",
+							"protocol": "https",
+							"host": [
+								"shreyassrivatsashopifyfall2022challenge",
+								"shreyassrivatsa",
+								"repl",
+								"co"
+							],
+							"path": [
+								"item",
+								"desk"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Item that does not Exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "786f9a63-417f-4fee-8e56-28c81b99d8e8",
+								"exec": [
+									"pm.test(\"Status code is 404\", () => {",
+									"  pm.expect(pm.response.code).to.eql(404);",
+									"});",
+									"",
+									"pm.test(\"The response message is valid\", () => {",
+									"    //parse the response JSON and test three properties",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.message).to.eql('Item not found.');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://shreyassrivatsashopifyfall2022challenge.shreyassrivatsa.repl.co/item/chair",
+							"protocol": "https",
+							"host": [
+								"shreyassrivatsashopifyfall2022challenge",
+								"shreyassrivatsa",
+								"repl",
+								"co"
+							],
+							"path": [
+								"item",
+								"chair"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Item by Name That Does not exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ca9fceb2-4fe0-48f3-b4cd-a3791033e376",
+								"exec": [
+									"pm.test(\"Status code is 404\", () => {",
+									"  pm.expect(pm.response.code).to.eql(404);",
+									"});",
+									"",
+									"pm.test(\"The response message is valid\", () => {",
+									"    //parse the response JSON and test three properties",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.message).to.eql('Item not found.');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://shreyassrivatsashopifyfall2022challenge.shreyassrivatsa.repl.co/item/dummy",
+							"protocol": "https",
+							"host": [
+								"shreyassrivatsashopifyfall2022challenge",
+								"shreyassrivatsa",
+								"repl",
+								"co"
+							],
+							"path": [
+								"item",
+								"dummy"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

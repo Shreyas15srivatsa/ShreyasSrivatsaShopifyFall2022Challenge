@@ -12,5 +12,6 @@ class WareHouses(Enum):
   ERROR_INSERTING = "An error occurred while inserting the warehouse."
   WAREHOUSE_NOT_FOUND = "Warehouse not found. Please try again."
   WAREHOUSE_DELETED = "Warehouse deleted."
+  WAREHOUSE_INVENTORY_NOT_EMPTY = "Cannot delete this warehouse as the inventory is not empty. Please empty the inventory and try again."
 
 WELCOME_MSG = 'Hello, Welcome to the Shopify Fall 2022 Developer Challenge attempt by Shreyas Srivatsa! Please follow the instructions in the README.md'

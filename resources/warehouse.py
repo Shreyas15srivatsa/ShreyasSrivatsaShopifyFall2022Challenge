@@ -42,7 +42,17 @@ class WareHouse(Resource):
     def delete(cls, name: str):
         warehouse = WareHouseModel.find_by_name(name)
         if warehouse:
+            # convert warehouse obj to json
+            warehouse_json = warehouse_schema.dump(warehouse)
+            # if the warehouse has items in it's inventory, we cannot
+            # delete the warehouse before emptying the inventory
+            if len(warehouse_json["items"]):
+              return {
+                "message": WareHouses.WAREHOUSE_INVENTORY_NOT_EMPTY.value
+              }, HTTPStatus.BAD_REQUEST
+              
             warehouse.delete_from_db()
+          
             return {
               "message": WareHouses.WAREHOUSE_DELETED.value
             }, HTTPStatus.OK
