@@ -2,11 +2,14 @@ from http import HTTPStatus
 from flask_restful import Resource
 from flask import request
 from models.item import ItemModel
+from models.warehouse import WareHouseModel
 from schemas.item import ItemSchema
+from schemas.warehouse import WareHouseSchema
 from constants import Items
 
-# load the item and item list schemas
+# load the schemas
 item_schema = ItemSchema()
+warehouse_list_schema = WareHouseSchema(many=True)
 item_list_schema = ItemSchema(many=True)
 
 class Item(Resource):
@@ -31,6 +34,14 @@ class Item(Resource):
             }, HTTPStatus.BAD_REQUEST
 
         item_json = request.get_json()
+      
+        warehouse_id = item_json["warehouse_id"]
+        # verify if the warehouse_id provided in the 
+        # request is valid
+        is_valid = Item.verify_warehouse_id(warehouse_id)
+        if len(is_valid):
+          return is_valid, HTTPStatus.BAD_REQUEST
+          
         item_json["name"] = name
 
         item = item_schema.load(item_json)
@@ -69,6 +80,15 @@ class Item(Resource):
         if item:
             item.price = item_json["price"]
             item.description = item_json["description"]
+          
+            warehouse_id = item_json["warehouse_id"]
+            # verify if the warehouse_id provided in the 
+            # update request is valid
+            is_valid = Item.verify_warehouse_id(warehouse_id)
+            if len(is_valid):
+              return is_valid, HTTPStatus.BAD_REQUEST
+
+            item.warehouse_id = warehouse_id
         else:
             item_json["name"] = name
             item = item_schema.load(item_json)
@@ -76,6 +96,28 @@ class Item(Resource):
         item.save_to_db()
 
         return item_schema.dump(item), HTTPStatus.OK
+
+    @staticmethod
+    def verify_warehouse_id(warehouse_id: int) -> dict:
+      """
+      Helper method that verifies if the provided warehouse_id is valid
+      Get the warehouse_id specified in the request and 
+      build a list of valid warehouse ids to check
+      if the warehouse id provided is valid
+      """
+      all_warehouses = warehouse_list_schema.dump(
+        WareHouseModel.find_all()
+      )
+      valid_ids = []
+      for warehouse in all_warehouses:
+        valid_ids.append(warehouse["id"])
+        
+      if warehouse_id not in valid_ids:
+        return {
+          "message": Items.INVALID_WAREHOUSE.value
+        }
+      else:
+        return {}
 
 
 class ItemList(Resource):

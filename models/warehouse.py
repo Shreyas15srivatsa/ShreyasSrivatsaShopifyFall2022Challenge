@@ -9,7 +9,7 @@ class WareHouseModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False, unique=True)
     # define the relationship b/w warehouses and items
-    items = db.relationship("ItemModel", lazy="dynamic")
+    items = db.relationship("ItemModel", lazy="dynamic", overlaps="warehouse")
 
     @classmethod
     def find_by_name(cls, name: str) -> "WareHouseModel":

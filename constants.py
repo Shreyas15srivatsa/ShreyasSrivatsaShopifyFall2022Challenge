@@ -5,6 +5,7 @@ class Items(Enum):
   ERROR_INSERTING = "An error occurred while inserting the item."
   ITEM_NOT_FOUND = "Item not found."
   ITEM_DELETED = "Item deleted."
+  INVALID_WAREHOUSE = "Item cannot be added to the provided warehouse. Please check if the warehouse is valid."
 
 class WareHouses(Enum):
   NAME_ALREADY_EXISTS = "A warehouse with name '{}' already exists."
